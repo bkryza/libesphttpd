@@ -12,7 +12,7 @@ COMPRESS_W_YUI ?= no
 YUI-COMPRESSOR ?= /usr/bin/yui-compressor
 USE_HEATSHRINK ?= yes
 HTTPD_WEBSOCKETS ?= yes
-USE_OPENSDK ?= no
+USE_OPENSDK ?= yes
 FREERTOS ?= no
 HTTPD_MAX_CONNECTIONS ?= 8
 #For FreeRTOS
@@ -104,6 +104,9 @@ Q := @
 vecho := @echo
 endif
 
+ifndef PDIR
+GEN_LIBS = libesphttpd.a
+endif
 
 ifneq ("$(FREERTOS)","yes")
 ifeq ("$(USE_OPENSDK)","yes")

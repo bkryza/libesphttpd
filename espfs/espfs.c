@@ -21,6 +21,7 @@ It's written for use with httpd, but doesn't need to be used as such.
 #ifdef __ets__
 //esp build
 #include <esp8266.h>
+#include <os_type.h>
 #else
 //Test build
 #include <stdio.h>
@@ -39,7 +40,6 @@ It's written for use with httpd, but doesn't need to be used as such.
 #endif
 
 static char* espFsData = NULL;
-
 
 struct EspFsFile {
 	EspFsHeader *header;
