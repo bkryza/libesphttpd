@@ -1,5 +1,7 @@
 #include <sys/cdefs.h>
 #include <string.h>
+#include <esp8266.h>
+
 
 #if defined(LIBC_SCCS) && !defined(lint)
 static char sccsid[] = "@(#)strcasecmp.c	8.1 (Berkeley) 6/4/93";
@@ -12,7 +14,7 @@ typedef unsigned char u_char;
  * together for a case independent comparison.  The mappings are
  * based upon ascii character sequences.
  */
-static const u_char charmap[] = {
+static const u_char charmap[] ICACHE_RODATA_ATTR = {
 	'\000', '\001', '\002', '\003', '\004', '\005', '\006', '\007',
 	'\010', '\011', '\012', '\013', '\014', '\015', '\016', '\017',
 	'\020', '\021', '\022', '\023', '\024', '\025', '\026', '\027',
@@ -47,8 +49,7 @@ static const u_char charmap[] = {
 	'\370', '\371', '\372', '\373', '\374', '\375', '\376', '\377',
 };
 
-int
-strcasecmp(s1, s2)
+int ICACHE_FLASH_ATTR strcasecmp(s1, s2)
 	const char *s1, *s2;
 {
 	register const u_char *cm = charmap,

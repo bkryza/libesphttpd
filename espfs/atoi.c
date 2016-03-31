@@ -1,5 +1,7 @@
+#include <esp8266.h>
 
-int atoi(const char *nptr)
+
+int ICACHE_FLASH_ATTR atoi(const char *nptr)
 {
     int res = 0; // Initialize result
     int i = 0;
