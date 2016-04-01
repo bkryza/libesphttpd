@@ -13,8 +13,8 @@ typedef unsigned char u_char;
  * This array is designed for mapping upper and lower case letter
  * together for a case independent comparison.  The mappings are
  * based upon ascii character sequences.
- */
-static const u_char charmap[] ICACHE_RODATA_ATTR = {
+*/
+ u_char charmap[] = {
 	'\000', '\001', '\002', '\003', '\004', '\005', '\006', '\007',
 	'\010', '\011', '\012', '\013', '\014', '\015', '\016', '\017',
 	'\020', '\021', '\022', '\023', '\024', '\025', '\026', '\027',
@@ -60,4 +60,23 @@ int ICACHE_FLASH_ATTR strcasecmp(s1, s2)
 		if (*us1++ == '\0')
 			return (0);
 	return (cm[*us1] - cm[*--us2]);
+}
+
+int ICACHE_FLASH_ATTR strncasecmp(s1, s2, n)
+	const char *s1, *s2;
+	register size_t n;
+{
+	if (n != 0) {
+		register const u_char *cm = charmap,
+				*us1 = (const u_char *)s1,
+				*us2 = (const u_char *)s2;
+
+		do {
+			if (cm[*us1] != cm[*us2++])
+				return (cm[*us1] - cm[*--us2]);
+			if (*us1++ == '\0')
+				break;
+		} while (--n != 0);
+	}
+	return (0);
 }

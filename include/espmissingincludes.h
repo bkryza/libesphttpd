@@ -6,6 +6,8 @@
 
 
 int strcasecmp(const char *a, const char *b);
+int strncasecmp(const char *a, const char *b, register size_t n);
+
 #ifndef FREERTOS
 #include <eagle_soc.h>
 #include <ets_sys.h>

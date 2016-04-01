@@ -300,7 +300,7 @@ int ICACHE_FLASH_ATTR cgiWebsocket(HttpdConnData *connData) {
 		//First call here. Check if client headers are OK, send server header.
 		i=httpdGetHeader(connData, "Upgrade", buff, sizeof(buff)-1);
 		httpd_printf("WS: Upgrade: %s\n", buff);
-		if (i && strcasecmp(buff, "websocket")==0) {
+		if (i && strncasecmp(buff, "websocket", 9)==0) {
 			i=httpdGetHeader(connData, "Sec-WebSocket-Key", buff, sizeof(buff)-1);
 			if (i) {
 //				httpd_printf("WS: Key: %s\n", buff);
