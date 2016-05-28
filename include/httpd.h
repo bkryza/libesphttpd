@@ -10,6 +10,9 @@
 
 #define HTTPD_METHOD_GET 1
 #define HTTPD_METHOD_POST 2
+#define HTTPD_METHOD_PUT 3
+#define HTTPD_METHOD_PATCH 4
+#define HTTPD_METHOD_DELETE 5
 
 typedef struct HttpdPriv HttpdPriv;
 typedef struct HttpdConnData HttpdConnData;
